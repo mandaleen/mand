@@ -181,16 +181,36 @@ const Hero = () => {
           {/* Scrollable Travel Cards */}
           <div 
             ref={scrollContainerRef}
-            className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4"
+            className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4 relative"
             style={{ 
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
             }}
           >
+            {/* Left Navigation Arrow */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => scroll('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 hover:bg-white text-primary shadow-lg rounded-full flex items-center justify-center backdrop-blur-sm"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+
+            {/* Right Navigation Arrow */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => scroll('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 hover:bg-white text-primary shadow-lg rounded-full flex items-center justify-center backdrop-blur-sm"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+
             {travelPackages.map((pkg, index) => (
               <div
                 key={pkg.id}
-                className="min-w-[280px] liquid-glass-card rounded-3xl p-6 shadow-xl transform hover:scale-105 transition-all duration-300 liquid-ripple"
+                className="min-w-[280px] bg-white rounded-3xl p-6 shadow-xl transform hover:scale-105 transition-all duration-300 liquid-ripple"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="relative w-full h-32 rounded-2xl mb-4 overflow-hidden">
@@ -203,15 +223,15 @@ const Hero = () => {
                 </div>
                 
                 <div className="space-y-3">
-                  <h3 className="text-xl font-bold text-foreground">{pkg.title}</h3>
+                  <h3 className="text-xl font-bold text-gray-800">{pkg.title}</h3>
                   
-                  <div className="flex items-center text-muted-foreground text-sm">
+                  <div className="flex items-center text-gray-600 text-sm">
                     <MapPin className="w-4 h-4 mr-1 text-primary" />
                     {pkg.location}
                   </div>
                   
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center text-muted-foreground text-sm">
+                    <div className="flex items-center text-gray-600 text-sm">
                       <Clock className="w-4 h-4 mr-1 text-primary" />
                       {pkg.duration}
                     </div>
